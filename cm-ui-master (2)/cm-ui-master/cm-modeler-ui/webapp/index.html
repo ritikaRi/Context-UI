@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>AggregatesModel</title>
+	<script id="sap-ui-bootstrap"
+			src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+			data-sap-ui-libs="sap.m, sap.ushell, sap.collaboration"
+			data-sap-ui-theme="sap_fiori_3"
+			data-sap-ui-compatVersion="edge"
+			data-sap-ui-resourceroots='{"sap.iot.ua.modeler": "../"}'
+			data-sap-ui-frameOptions='allow'> 	// NON-SECURE setting for testing environment
+	</script>
+	<script type="text/javascript">
+		sap.ui.getCore().attachInit(function() {
+			// initialize the ushell sandbox component
+			sap.ushell.Container.createRenderer().placeAt("content");
+		});
+	</script>
+
+</head>
+
+<!-- UI Content -->
+<body class="sapUiBody" id="content">
+</body>
+</html>

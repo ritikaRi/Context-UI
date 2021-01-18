@@ -1,0 +1,263 @@
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+    <edmx:Reference Uri="/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI" />
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common" />
+    </edmx:Reference>
+    <edmx:Reference Uri="/here/goes/your/serviceurl/$metadata">
+        <edmx:Include Alias="Metadata" Namespace="com.sap.iot.cm.mm" />
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="com.sap">
+            <Annotations Target="com.sap.iot.cm.mm.DataModelType">
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>Name</PropertyPath>
+                        <PropertyPath>Status</PropertyPath>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="com.sap.iot.cm.mm.DataModelType/Status">
+                <Annotation Term="Common.ValueList" Qualifier="Status">
+                    <Record>
+                        <PropertyValue Property="Label" String="{@i18n>status}" />
+                        <PropertyValue Property="CollectionPath" String="Status" />
+                        <PropertyValue Bool="true" Property="SearchSupported" />
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Status" />
+                                    <PropertyValue Property="ValueListProperty" String="Status" />
+                                </Record>
+                                <Record Type="Common.ValueListParameterIn">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Status" />
+                                    <PropertyValue Property="ValueListProperty" String="Status" />
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="com.sap.iot.cm.mm.DataModelType">
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Name" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Descriptions/Description" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="CreationTime" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Status" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="UsageStatus" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.HeaderInfo">
+                    <Record Type="UI.HeaderInfoType">
+                        <PropertyValue Property="TypeName" String="{@i18n>newContextualizedModel}" />
+                        <PropertyValue Property="TypeNamePlural" String="{@i18n>contextualizedModel}" />
+                        <PropertyValue Property="Title">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" String="{@i18n>newContextualizedModel}" />
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.Facets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="{@i18n>generalInformation}" />
+                            <PropertyValue Property="ID" String="GeneralInformation" />
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#GeneralInformation" />
+                        </Record>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="{@i18n>basicSettings}" />
+                            <PropertyValue Property="ID" String="BasicSettings" />
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#BasicSettings" />
+                        </Record>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="{@i18n>measures}" />
+                            <PropertyValue Property="ID" String="Measures" />
+                            <PropertyValue Property="Target" AnnotationPath="Fields/@UI.LineItem#Measures" />
+                        </Record>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="{@i18n>dimensions}" />
+                            <PropertyValue Property="ID" String="Dimensions" />
+                            <PropertyValue Property="Target" AnnotationPath="Fields/@UI.LineItem#Dimensions" />
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.FieldGroup" Qualifier="GeneralInformation">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="{@i18n>name}" />
+                                    <PropertyValue Property="Value" Path="Name" />
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="{@i18n>description}" />
+                                    <PropertyValue Property="Value" Path="Descriptions/Description" />
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="{@i18n>createdTime}" />
+                                    <PropertyValue Property="Value" Path="CreationTime" />
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="{@i18n>status}" />
+                                    <PropertyValue Property="Value" Path="Status" />
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="{@i18n>usageStatus}" />
+                                    <PropertyValue Property="Value" Path="UsageStatus" />
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.FieldGroup" Qualifier="BasicSettings">
+                    <Record Type="UI.FieldGroupType">
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="{@i18n>aggregationWindow}" />
+                                    <PropertyValue Property="Value" Path="AggregationWindow" />
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="{@i18n>timeWindow}" />
+                                    <PropertyValue Property="Value" Path="TimeWindowValue" />
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="TimeWindowIdentifier" />
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="{@i18n>lagPeriod}" />
+                                    <PropertyValue Property="Value" Path="LagPeriodValue" />
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Value" Path="LagPeriodIdentifier" />
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Metadata.DataModelType">
+                <Annotation Term="UI.SelectionVariant" Qualifier="ContextualizedModel">
+                    <Record Type="UI.SelectionVariantType">
+                        <PropertyValue Property="Text" String="{@i18n>contextualizedModel}" />
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.SelectionVariant" Qualifier="TimeSeriesModel">
+                    <Record Type="UI.SelectionVariantType">
+                        <PropertyValue Property="Text" String="{@i18n>time-seriesModel}" />
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="com.sap.iot.cm.mm.DataModelDescriptionType">
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Description" />
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="com.sap.iot.cm.mm.DataModelFieldType">
+				<Annotation Term="UI.LineItem" Qualifier="Measures">
+					<Collection>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="FriendlyName"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="Friendly Name"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="CatalogType"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="CatalogType"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="CatalogName"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="CatalogName"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="DatasetName"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="DatasetName"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="Name"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="Name"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="AggregationType"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="AggregationType"/>
+						</Record>
+						<Record Type="UI.DataFieldForAction">
+							<PropertyValue Property="Action" String="DeleteMeasure"/>
+							<PropertyValue Property="Inline" Bool="true"/>
+							<PropertyValue Property="InvocationGrouping" EnumMember="UI.OperationGroupingType/Isolated"/>
+							<PropertyValue Property="IconUrl" String="sap-icon://delete"/>
+						</Record>
+					</Collection>
+				</Annotation>
+                <Annotation Term="UI.LineItem" Qualifier="Dimensions">
+					<Collection>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="FriendlyName"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="Friendly Name"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="CatalogType"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="CatalogType"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="CatalogName"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="CatalogName"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="DatasetName"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="DatasetName"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="Name"/>
+							<Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High"/>
+							<PropertyValue Property="Label" String="Name"/>
+						</Record>
+						<Record Type="UI.DataField">
+							<PropertyValue Property="Value" Path="AllowPropagation"/>
+							<PropertyValue Property="Label" String="AllowPropagation"/>
+						</Record>
+						<Record Type="UI.DataFieldForAction">
+							<PropertyValue Property="Action" String="DeleteDimension"/>
+							<PropertyValue Property="Inline" Bool="true"/>
+							<PropertyValue Property="InvocationGrouping" EnumMember="UI.OperationGroupingType/Isolated"/>
+							<PropertyValue Property="IconUrl" String="sap-icon://delete"/>
+						</Record>
+					</Collection>
+				</Annotation>
+
+			</Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

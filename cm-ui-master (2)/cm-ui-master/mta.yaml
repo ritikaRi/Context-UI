@@ -1,0 +1,31 @@
+---
+ID: cm-ui
+_schema-version: '3.1'
+parameters:
+  deploy_mode: html5-repo
+version: 1.0.0
+modules:
+  - name: cm-ui-deployer
+    type: com.sap.html5.application-content
+    path: cm-ui-deployer
+    requires:
+      - name: dt-cm-ui-deployer
+    build-parameters:
+      requires:
+        - name: cm-modeler-ui
+          artifacts:
+            - './*'
+          target-path: resources/cm-modeler-ui
+  - name: cm-modeler-ui
+    type: html5
+    path: cm-modeler-ui
+    build-parameters:
+      builder: grunt
+      supported-platforms: []
+      build-result: dist
+resources:
+  - name: dt-cm-ui-deployer
+    parameters:
+      service-plan: app-host
+      service: html5-apps-repo
+    type: org.cloudfoundry.managed-service

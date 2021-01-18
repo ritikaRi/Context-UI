@@ -1,0 +1,26 @@
+{
+    "comment": "Configuration for CM UI",
+    "collections": [
+        {
+            "collectionName": "IOT_CM_UI",
+            "folders": [
+                {
+                    "startingFolderPath": "/**",
+                    "sourceFilters": [
+                        "*i18n.properties"
+                    ],
+                    "excludedSourceFilters": [
+                        "**/test/**"
+                    ]
+                }
+            ]
+        }
+    ],
+    "defaultConfiguration": {
+        "xlfFolderPath": "/XLF/[FullPath]",
+        "targetFolderPath": ".",
+        "pseudoLocFolderPath": ".",
+        "oneQFolderPath": ".",
+        "targetFileNamingConvention": "[filename]_[langCode].[extension]"
+    }
+}

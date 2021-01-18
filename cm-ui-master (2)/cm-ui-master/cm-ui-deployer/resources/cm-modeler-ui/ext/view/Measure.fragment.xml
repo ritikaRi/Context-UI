@@ -1,0 +1,27 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" >
+	<Dialog title="Select Measure" contentHeight="auto" contentWidth="40%">
+      <content>
+      <f:SimpleForm >
+      <f:content>
+     <Label text="Friendly Name " required="true"></Label><Input width="70%"></Input>
+     <Label text="Catalog Type " required="true"></Label><Input width="70%"></Input>
+     <Label text="Catalog" required="true"></Label><Input width="70%"></Input>
+    <Label text="Dataset " required="true"></Label><Input width="70%"></Input>
+    <Label text="Property " required="true"></Label><Input width="70%"></Input>
+      <Label text="Aggregation Type " required="true"></Label><Input width="70%"></Input>
+           </f:content>
+         </f:SimpleForm>        
+    </content>
+   <beginButton>
+         <Button
+            text="OK"
+            press="onOKMeasure"/>
+      </beginButton>
+       <endButton>
+         <Button
+            text="Cancel"
+            press="onCancelMeasure"/>
+      </endButton>
+   </Dialog>   
+    </core:FragmentDefinition>
+   

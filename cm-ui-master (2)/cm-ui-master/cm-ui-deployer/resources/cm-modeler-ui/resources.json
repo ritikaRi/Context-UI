@@ -1,0 +1,100 @@
+{
+    "resources": [
+        {
+            "name": "annotations\\annotation.xml"
+        },
+        {
+            "name": "Component-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "Component-preload.js",
+            "merged": true
+        },
+        {
+            "name": "Component.js"
+        },
+        {
+            "name": "Component.js.bak"
+        },
+        {
+            "name": "controller\\Home-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller\\Home.controller.js"
+        },
+        {
+            "name": "css\\style-dbg.css",
+            "isDebug": true
+        },
+        {
+            "name": "css\\style.css"
+        },
+        {
+            "name": "di.code-validation.core_issues.json"
+        },
+        {
+            "name": "ext\\controller\\ListReportExt-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "ext\\controller\\ListReportExt.controller.js"
+        },
+        {
+            "name": "ext\\controller\\ObjectPageExt-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "ext\\controller\\ObjectPageExt.controller.js"
+        },
+        {
+            "name": "ext\\view\\Dimension.fragment.xml"
+        },
+        {
+            "name": "ext\\view\\Measure.fragment.xml"
+        },
+        {
+            "name": "i18n\\i18n.properties",
+            "raw": "i18n\\i18n.properties"
+        },
+        {
+            "name": "i18n\\i18n.properties.bak"
+        },
+        {
+            "name": "i18n\\ListReport\\DataModels\\i18n.properties",
+            "raw": "i18n\\i18n.properties"
+        },
+        {
+            "name": "index.html"
+        },
+        {
+            "name": "manifest-bundle.zip"
+        },
+        {
+            "name": "manifest.json"
+        },
+        {
+            "name": "manifest.json.bak"
+        },
+        {
+            "name": "model\\models-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "model\\models.js"
+        },
+        {
+            "name": "neo-app.json"
+        },
+        {
+            "name": "sap-ui-cachebuster-info.json"
+        },
+        {
+            "name": "view\\Home.view.xml"
+        },
+        {
+            "name": "xs-app.json"
+        }
+    ]
+}

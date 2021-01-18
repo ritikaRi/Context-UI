@@ -1,0 +1,21 @@
+{
+  "welcomeFile": "/index.html",
+  "authenticationMethod": "route",
+  "logout": {
+    "logoutEndpoint": "/do/logout"
+  },
+  "routes": [
+    {
+      "source" : "/IOTAS-CONTENT-MANAGER/(.*)",
+      "target" : "$1",
+      "authenticationType" : "xsuaa",
+      "service" : "com.sap.leonardo.iot",
+      "endpoint"  : "content-manager"
+  },{
+      "source": "^(.*)$",
+      "target": "$1",
+      "service": "html5-apps-repo-rt",
+      "authenticationType": "xsuaa"
+    }
+  ]
+}

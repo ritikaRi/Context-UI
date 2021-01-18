@@ -1,0 +1,217 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" Version="1.0" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+	<edmx:DataServices m:DataServiceVersion="1.0" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata">
+		<Schema Namespace="com.sap.iot.cm.mm" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+			<EntityType Name="DataModelType">
+				<Key>
+					<PropertyRef Name="Id"/>
+				</Key>
+				<Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="36"/>
+				<Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="100"/>
+				<Property Name="AggregationWindow" Type="Edm.String" Nullable="false" MaxLength="15"/>
+				<Property Name="TimeWindowIdentifier" Type="Edm.String" Nullable="false" MaxLength="15"/>
+				<Property Name="TimeWindowValue" Type="Edm.Int16" Nullable="false"/>
+				<Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="30"/>
+				<Property Name="UsageStatus" Type="Edm.String" MaxLength="15"/>
+				<Property Name="LagPeriodIdentifier" Type="Edm.String" Nullable="true" MaxLength="15"/>
+				<Property Name="LagPeriodValue" Type="Edm.Int16"/>
+				<Property Name="CreationTime" Type="Edm.DateTime"/>
+				<NavigationProperty Name="Descriptions" Relationship="com.sap.iot.cm.mm.DataModelType_Description" FromRole="DataModelType_Description"
+					ToRole="Description_DataModels"/>
+				<NavigationProperty Name="Fields" Relationship="com.sap.iot.cm.mm.DataModelType_Field" FromRole="DataModelType_Field"
+					ToRole="Field_DataModels"/>
+			</EntityType>
+			<EntityType Name="DataModelDescriptionType">
+				<Key>
+					<PropertyRef Name="ModelId"/>
+					<PropertyRef Name="LanguageCode"/>
+				</Key>
+				<Property Name="LanguageCode" Type="Edm.String" Nullable="false" MaxLength="2"/>
+				<Property Name="Description" Type="Edm.String" Nullable="false" MaxLength="60"/>
+			</EntityType>
+			<EntityType Name="DataModelFieldType">
+				<Key>
+					<PropertyRef Name="Id"/>
+				</Key>
+				<Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="36"/>
+				<Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="50"/>
+				<Property Name="CatalogName" Type="Edm.String" Nullable="false" MaxLength="100"/>
+				<Property Name="CatalogType" Type="Edm.String" Nullable="false" MaxLength="100"/>
+				<Property Name="DatasetName" Type="Edm.String" Nullable="false" MaxLength="100"/>
+				<Property Name="DatasetType" Type="Edm.String" Nullable="false" MaxLength="20"/>
+				<Property Name="FriendlyName" Type="Edm.String" Nullable="false" MaxLength="50"/>
+				<Property Name="AnalyticType" Type="Edm.String" Nullable="false" MaxLength="20"/>
+				<Property Name="AggregationType" Type="Edm.String" Nullable="true" MaxLength="20"/>
+				<Property Name="AllowPropagation" Type="Edm.Boolean"/>
+			</EntityType>
+			<EntityType Name="CatalogType">
+				<Key>
+					<PropertyRef Name="Name"/>
+				</Key>
+				<Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="70"/>
+				<NavigationProperty Name="Catalogs" Relationship="com.sap.iot.cm.mm.CatalogType_Catalog" FromRole="CatalogType_Catalog"
+					ToRole="Catalog_CatalogTypes"/>
+			</EntityType>
+			<EntityType Name="Catalog">
+				<Key>
+					<PropertyRef Name="Name"/>
+					<PropertyRef Name="CatalogType"/>
+				</Key>
+				<Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="100"/>
+				<Property Name="CatalogType" Type="Edm.String" Nullable="false" MaxLength="100"/>
+				<NavigationProperty Name="Datasets" Relationship="com.sap.iot.cm.mm.Catalog_Dataset" FromRole="Catalog_Dataset" ToRole="Dataset_Catalogs"/>
+			</EntityType>
+			<EntityType Name="Dataset">
+				<Key>
+					<PropertyRef Name="Name"/>
+					<PropertyRef Name="CatalogType"/>
+					<PropertyRef Name="CatalogName"/>
+				</Key>
+				<Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="100"/>
+				<Property Name="CatalogType" Type="Edm.String" Nullable="false" MaxLength="100"/>
+				<Property Name="CatalogName" Type="Edm.String" Nullable="false" MaxLength="100"/>
+				<NavigationProperty Name="Properties" Relationship="com.sap.iot.cm.mm.Dataset_Property" FromRole="Dataset_Property"
+					ToRole="Property_Datasets"/>
+			</EntityType>
+			<EntityType Name="Property">
+				<Key>
+					<PropertyRef Name="CatalogType"/>
+					<PropertyRef Name="CatalogName"/>
+					<PropertyRef Name="DatasetName"/>
+					<PropertyRef Name="Name"/>
+				</Key>
+				<Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="70"/>
+				<Property Name="CatalogType" Type="Edm.String" Nullable="false" MaxLength="100"/>
+				<Property Name="CatalogName" Type="Edm.String" Nullable="false" MaxLength="100"/>
+				<Property Name="DatasetName" Type="Edm.String" Nullable="false" MaxLength="100"/>
+				<Property Name="AggregationRole" Type="Edm.String" Nullable="true" MaxLength="50"/>
+				<Property Name="DataType" Type="Edm.String" Nullable="true" MaxLength="30"/>
+			</EntityType>
+			<EntityType Name="DataModelStatusLogType">
+				<Key>
+					<PropertyRef Name="ModelId"/>
+					<PropertyRef Name="StatusTime"/>
+				</Key>
+				<Property Name="ModelId" Type="Edm.String" Nullable="false" MaxLength="70"/>
+				<Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="70"/>
+				<Property Name="StatusTime" Type="Edm.DateTime" Nullable="false"/>
+				<Property Name="Remarks" Type="Edm.String" Nullable="true" MaxLength="2048"/>
+			</EntityType>
+			<EntityType Name="AuthorizationGroupType">
+				<Key>
+					<PropertyRef Name="Id"/>
+				</Key>
+				<Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="36"/>
+				<Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="100"/>
+				<Property Name="CreationTime" Type="Edm.DateTime"/>
+				<Property Name="UpdationTime" Type="Edm.DateTime"/>
+				<NavigationProperty Name="Descriptions" Relationship="com.sap.iot.cm.mm.AuthorizationGroupType_Description"
+					FromRole="AuthorizationGroupType_Description" ToRole="Description_AuthorizationGroupType"/>
+				<NavigationProperty Name="Models" Relationship="com.sap.iot.cm.mm.AuthorizationGroupType_Model" FromRole="AuthorizationGroupType_Model"
+					ToRole="Model_AuthorizationGroupType"/>
+				<NavigationProperty Name="RoleCollections" Relationship="com.sap.iot.cm.mm.AuthorizationGroupType_RoleCollection"
+					FromRole="AuthorizationGroupType_RoleCollection" ToRole="RoleCollection_AuthorizationGroupType"/>
+			</EntityType>
+			<EntityType Name="AuthorizationGroupDescriptionType">
+				<Key>
+					<PropertyRef Name="AuthorizationGroupId"/>
+					<PropertyRef Name="LanguageCode"/>
+				</Key>
+				<Property Name="LanguageCode" Type="Edm.String" Nullable="false" MaxLength="2"/>
+				<Property Name="Description" Type="Edm.String" Nullable="false" MaxLength="60"/>
+			</EntityType>
+			<EntityType Name="AuthorizationGroupModelType">
+				<Key>
+					<PropertyRef Name="AuthorizationGroupId"/>
+					<PropertyRef Name="Id"/>
+				</Key>
+				<Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="36"/>
+			</EntityType>
+			<EntityType Name="AuthorizationGroupRoleCollectionType">
+				<Key>
+					<PropertyRef Name="AuthorizationGroupId"/>
+					<PropertyRef Name="Name"/>
+				</Key>
+				<Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="100"/>
+			</EntityType>
+			<Association Name="DataModelType_Description">
+				<End Type="com.sap.iot.cm.mm.DataModelType" Multiplicity="0..1" Role="DataModelType_Description"/>
+				<End Type="com.sap.iot.cm.mm.DataModelDescriptionType" Multiplicity="*" Role="Description_DataModels"/>
+			</Association>
+			<Association Name="DataModelType_Field">
+				<End Type="com.sap.iot.cm.mm.DataModelType" Multiplicity="1" Role="DataModelType_Field"/>
+				<End Type="com.sap.iot.cm.mm.DataModelFieldType" Multiplicity="*" Role="Field_DataModels"/>
+			</Association>
+			<Association Name="CatalogType_Catalog">
+				<End Type="com.sap.iot.cm.mm.CatalogType" Multiplicity="1" Role="CatalogType_Catalog"/>
+				<End Type="com.sap.iot.cm.mm.Catalog" Multiplicity="*" Role="Catalog_CatalogTypes"/>
+			</Association>
+			<Association Name="Catalog_Dataset">
+				<End Type="com.sap.iot.cm.mm.Catalog" Multiplicity="1" Role="Catalog_Dataset"/>
+				<End Type="com.sap.iot.cm.mm.Dataset" Multiplicity="*" Role="Dataset_Catalogs"/>
+			</Association>
+			<Association Name="Dataset_Property">
+				<End Type="com.sap.iot.cm.mm.Dataset" Multiplicity="1" Role="Dataset_Property"/>
+				<End Type="com.sap.iot.cm.mm.Property" Multiplicity="*" Role="Property_Datasets"/>
+			</Association>
+			<Association Name="AuthorizationGroupType_Description">
+				<End Type="com.sap.iot.cm.mm.AuthorizationGroupType" Multiplicity="0..1" Role="AuthorizationGroupType_Description"/>
+				<End Type="com.sap.iot.cm.mm.AuthorizationGroupDescriptionType" Multiplicity="*" Role="Description_AuthorizationGroupType"/>
+			</Association>
+			<Association Name="AuthorizationGroupType_Model">
+				<End Type="com.sap.iot.cm.mm.AuthorizationGroupType" Multiplicity="0..1" Role="AuthorizationGroupType_Model"/>
+				<End Type="com.sap.iot.cm.mm.AuthorizationGroupModelType" Multiplicity="*" Role="Model_AuthorizationGroupType"/>
+			</Association>
+			<Association Name="AuthorizationGroupType_RoleCollection">
+				<End Type="com.sap.iot.cm.mm.AuthorizationGroupType" Multiplicity="0..1" Role="AuthorizationGroupType_RoleCollection"/>
+				<End Type="com.sap.iot.cm.mm.AuthorizationGroupRoleCollectionType" Multiplicity="*" Role="RoleCollection_AuthorizationGroupType"/>
+			</Association>
+			<EntityContainer Name="ContentManagerContainer" m:IsDefaultEntityContainer="true">
+				<EntitySet Name="DataModels" EntityType="com.sap.iot.cm.mm.DataModelType"/>
+				<EntitySet Name="DataModelFields" EntityType="com.sap.iot.cm.mm.DataModelFieldType"/>
+				<EntitySet Name="DataModelDescriptions" EntityType="com.sap.iot.cm.mm.DataModelDescriptionType"/>
+				<EntitySet Name="CatalogTypes" EntityType="com.sap.iot.cm.mm.CatalogType"/>
+				<EntitySet Name="Catalogs" EntityType="com.sap.iot.cm.mm.Catalog"/>
+				<EntitySet Name="Datasets" EntityType="com.sap.iot.cm.mm.Dataset"/>
+				<EntitySet Name="Properties" EntityType="com.sap.iot.cm.mm.Property"/>
+				<EntitySet Name="DataModelStatusLogs" EntityType="com.sap.iot.cm.mm.DataModelStatusLogType"/>
+				<EntitySet Name="AuthorizationGroups" EntityType="com.sap.iot.cm.mm.AuthorizationGroupType"/>
+				<EntitySet Name="AuthorizationGroupDescriptions" EntityType="com.sap.iot.cm.mm.AuthorizationGroupDescriptionType"/>
+				<EntitySet Name="AuthorizationGroupModels" EntityType="com.sap.iot.cm.mm.AuthorizationGroupModelType"/>
+				<EntitySet Name="AuthorizationGroupRoleCollections" EntityType="com.sap.iot.cm.mm.AuthorizationGroupRoleCollectionType"/>
+				<AssociationSet Name="DataModels_Descriptions" Association="com.sap.iot.cm.mm.DataModelType_Description">
+					<End EntitySet="DataModels" Role="DataModelType_Description"/>
+					<End EntitySet="DataModelDescriptions" Role="Description_DataModels"/>
+				</AssociationSet>
+				<AssociationSet Name="DataModels_Fields" Association="com.sap.iot.cm.mm.DataModelType_Field">
+					<End EntitySet="DataModels" Role="DataModelType_Field"/>
+					<End EntitySet="DataModelFields" Role="Field_DataModels"/>
+				</AssociationSet>
+				<AssociationSet Name="CatalogTypes_Catalogs" Association="com.sap.iot.cm.mm.CatalogType_Catalog">
+					<End EntitySet="CatalogTypes" Role="CatalogType_Catalog"/>
+					<End EntitySet="Catalogs" Role="Catalog_CatalogTypes"/>
+				</AssociationSet>
+				<AssociationSet Name="Catalogs_Datasets" Association="com.sap.iot.cm.mm.Catalog_Dataset">
+					<End EntitySet="Catalogs" Role="Catalog_Dataset"/>
+					<End EntitySet="Datasets" Role="Dataset_Catalogs"/>
+				</AssociationSet>
+				<AssociationSet Name="Datasets_Properties" Association="com.sap.iot.cm.mm.Dataset_Property">
+					<End EntitySet="Datasets" Role="Dataset_Property"/>
+					<End EntitySet="Properties" Role="Property_Datasets"/>
+				</AssociationSet>
+				<AssociationSet Name="AuthorizationGroups_Descriptions" Association="com.sap.iot.cm.mm.AuthorizationGroupType_Description">
+					<End EntitySet="AuthorizationGroups" Role="AuthorizationGroupType_Description"/>
+					<End EntitySet="AuthorizationGroupDescriptions" Role="Description_AuthorizationGroupType"/>
+				</AssociationSet>
+				<AssociationSet Name="AuthorizationGroups_Models" Association="com.sap.iot.cm.mm.AuthorizationGroupType_Model">
+					<End EntitySet="AuthorizationGroups" Role="AuthorizationGroupType_Model"/>
+					<End EntitySet="AuthorizationGroupModels" Role="Model_AuthorizationGroupType"/>
+				</AssociationSet>
+				<AssociationSet Name="AuthorizationGroups_RoleCollections" Association="com.sap.iot.cm.mm.AuthorizationGroupType_RoleCollection">
+					<End EntitySet="AuthorizationGroups" Role="AuthorizationGroupType_RoleCollection"/>
+					<End EntitySet="AuthorizationGroupRoleCollections" Role="RoleCollection_AuthorizationGroupType"/>
+				</AssociationSet>
+			</EntityContainer>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
